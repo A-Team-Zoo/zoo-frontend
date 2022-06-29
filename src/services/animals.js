@@ -1,5 +1,5 @@
 const url = 'http://localhost:7890/api/v1/animals';
-export async function fetchAnimals() {
+export default async function fetchAnimals() {
   const data = await fetch(url);
   const response = await data.json();
   return response;
