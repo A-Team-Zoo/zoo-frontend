@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import fetchAnimals from '../services/animals';
+import { Link } from 'react-router-dom';
 
 export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
@@ -16,7 +17,9 @@ export default function AnimalList() {
   return (
     <div>
       {animals.map((animal) => (
-        <p key={animal.id}>{animal.name}</p>
+        <p key={animal.id}>
+          <Link to={`/animals/${animal.id}`}> {animal.name}</Link>
+        </p>
       ))}
     </div>
   );
