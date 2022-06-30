@@ -14,7 +14,7 @@ export function Auth() {
     console.log('hello');
     try {
       e.preventDefault();
-      const keeper = await signUpKeeper({ email, password, name });
+      await signUpKeeper({ email, password, name });
       history.replace('/animals');
     } catch (error) {
       setError(error.message);
