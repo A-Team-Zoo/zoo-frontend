@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { signUpKeeper } from '../services/keeper';
+import { signInKeeper, signUpKeeper } from '../services/keeper';
 
 export function Auth() {
   const [signIn, setSignIn] = useState(true);
@@ -21,12 +21,25 @@ export function Auth() {
     }
   };
 
+  const handleSignIn = async (e) => {
+    try {
+      e.preventDefault();
+      await signInKeeper({ email, password });
+      history.replace('/animals');
+    } catch (error) {
+      setEmail('');
+      setPassword('');
+      setError(error.message);
+    }
+  };
+
   const handleClick = () => {
     setSignIn(!signIn);
   };
 
   return (
     <>
+      {error && <p>{error}</p>}
       {signIn ? (
         <>
           <button onClick={handleClick}>Have an account? SignIn</button>
@@ -59,8 +72,8 @@ export function Auth() {
       ) : (
         <>
           <button onClick={handleClick}>New Keeper? Sign Up</button>
-          <form className="signin-form">
-            <h3>Sign Up</h3>
+          <form className="signin-form" onSubmit={handleSignIn}>
+            <h3>Sign In</h3>
             <input
               id="email"
               type="email"
