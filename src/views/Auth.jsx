@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { signUpKeeper } from '../services/keeper';
 
 export function Auth() {
   const [signIn, setSignIn] = useState(true);
@@ -10,6 +11,7 @@ export function Auth() {
   const [error, setError] = useState('');
 
   const handleSignUp = async (e) => {
+    console.log('hello');
     try {
       e.preventDefault();
       const keeper = await signUpKeeper({ email, password, name });
@@ -51,8 +53,8 @@ export function Auth() {
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
             ></input>
+            <button type="submit">Sign Up</button>
           </form>
-          <button>Sign Up</button>
         </>
       ) : (
         <>
