@@ -1,4 +1,4 @@
-const url = 'http://localhost:7890/api/v1/animals';
+const url = process.env.HEROKU_ANIMALS_LINK;
 export default async function fetchAnimals() {
   const data = await fetch(url);
   const response = await data.json();
