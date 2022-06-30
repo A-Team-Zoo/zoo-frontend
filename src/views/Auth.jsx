@@ -11,7 +11,6 @@ export function Auth() {
   const [error, setError] = useState('');
 
   const handleSignUp = async (e) => {
-    console.log('hello');
     try {
       e.preventDefault();
       await signUpKeeper({ email, password, name });
